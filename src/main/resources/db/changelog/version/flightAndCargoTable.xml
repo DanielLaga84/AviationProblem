@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="ks">
+        <createTable tableName="flights">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="flight_number" type="int"/>
+            <column name="airport_code_departure" type="varchar"/>
+            <column name="airport_code_arrival" type="varchar"/>
+            <column name="departure_date" type="datetime"/>
+        </createTable>
+
+        <createTable tableName="cargo">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="weight" type="int"/>
+            <column name="weight_unit" type="varchar(2)"/>
+            <column name="pieces_of_cargo" type="int"/>
+            <column name="flight_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_cargo_flights" references="flights(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="baggage">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="weight" type="int"/>
+            <column name="weight_unit" type="varchar(2)"/>
+            <column name="pieces_of_cargo" type="int"/>
+            <column name="flight_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_baggage_flights" references="flights(id)"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="2" author="ks">
+        <insert tableName="flights">
+            <column name="flight_number" valueNumeric="7320" />
+            <column name="airport_code_departure" value="LAX"/>
+            <column name="airport_code_arrival" value="GDN"/>
+            <column name="departure_date" valueDate="2015-02-17T08:34:21"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="flight_number" valueNumeric="3724" />
+            <column name="airport_code_departure" value="YYZ"/>
+            <column name="airport_code_arrival" value="LEW"/>
+            <column name="departure_date" valueDate="2017-10-08T08:08:56"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="flight_number" valueNumeric="9775" />
+            <column name="airport_code_departure" value="SEA"/>
+            <column name="airport_code_arrival" value="GDN"/>
+            <column name="departure_date" valueDate="2016-03-10T01:09:49"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="flight_number" valueNumeric="8614" />
+            <column name="airport_code_departure" value="YYT"/>
+            <column name="airport_code_arrival" value="LEW"/>
+            <column name="departure_date" valueDate="2019-03-06T07:30:18"/>
+        </insert>
+        <insert tableName="flights">
+            <column name="flight_number" valueNumeric="9364" />
+            <column name="airport_code_departure" value="ANC"/>
+            <column name="airport_code_arrival" value="PPX"/>
+            <column name="departure_date" valueDate="2018-11-18T07:46:01"/>
+        </insert>
+
+    </changeSet>
+
+
+    <changeSet id="3" author="ks">
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="980"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="250" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="188"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="965" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="399"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="372" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="863"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="814" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="639"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="754" />
+            <column name="flight_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="796"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="224" />
+            <column name="flight_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="133"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="361" />
+            <column name="flight_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="702"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="47" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="204"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="433" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="977"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="117" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="586"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="434" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="909"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="544" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="418"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="661" />
+            <column name="flight_id" valueNumeric="4"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="413"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="640" />
+            <column name="flight_id" valueNumeric="4"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="842"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="211" />
+            <column name="flight_id" valueNumeric="4"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="679"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="315" />
+            <column name="flight_id" valueNumeric="4"/>
+        </insert>
+
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="575"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="388" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="767"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="576" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+        <insert tableName="cargo">
+            <column name="weight" valueNumeric="616"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="178" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+
+    </changeSet>
+
+    <changeSet id="4" author="ks">
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="407"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="880" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="657"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="588" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="435"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="858" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="567"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="711" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="526"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="232" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="220"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="341" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="713"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="99" />
+            <column name="flight_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="697"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="543" />
+            <column name="flight_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="869"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="975" />
+            <column name="flight_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="888"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="172" />
+            <column name="flight_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="882"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="530" />
+            <column name="flight_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="156"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="480" />
+            <column name="flight_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="11"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="147" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="639"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="216" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="460"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="947" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="723"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="737" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="505"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="547" />
+            <column name="flight_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="933"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="975" />
+            <column name="flight_id" valueNumeric="4"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="102"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="202" />
+            <column name="flight_id" valueNumeric="4"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="189"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="996" />
+            <column name="flight_id" valueNumeric="4"/>
+        </insert>
+
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="371"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="434" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="302"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="610" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="448"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="596" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="205"/>
+            <column name="weight_unit" value="kg"/>
+            <column name="pieces_of_cargo" valueNumeric="164" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="143"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="25" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="500"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="271" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+        <insert tableName="baggage">
+            <column name="weight" valueNumeric="98"/>
+            <column name="weight_unit" value="lb"/>
+            <column name="pieces_of_cargo" valueNumeric="911" />
+            <column name="flight_id" valueNumeric="5"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
