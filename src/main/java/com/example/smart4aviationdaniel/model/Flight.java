@@ -48,7 +48,7 @@ public class Flight {
 
     @Entity
     @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-    static class CargoAbs {
+    public static class CargoAbs {
         @Id
         @Column(name = "id")
         int id;
@@ -67,7 +67,7 @@ public class Flight {
 
         @Entity
         @Table(name = "cargo")
-        static class Cargo extends CargoAbs {
+        public static class Cargo extends CargoAbs {
 
             public Cargo() {
             }
@@ -82,7 +82,7 @@ public class Flight {
 
         @Entity
         @Table(name = "baggage")
-        static class Baggage extends CargoAbs {
+        public static class Baggage extends CargoAbs {
             public Baggage() {
             }
 
