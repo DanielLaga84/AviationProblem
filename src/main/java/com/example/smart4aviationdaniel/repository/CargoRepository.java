@@ -1,6 +1,7 @@
 package com.example.smart4aviationdaniel.repository;
 
 import com.example.smart4aviationdaniel.model.Flight;
+import com.example.smart4aviationdaniel.repository.dto.CargoDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -10,5 +11,5 @@ public interface CargoRepository extends JpaRepository<Flight.CargoAbs.Cargo, In
 
     <T> Set<T> findBy(Class<T> type);
 
-    List<Flight.CargoAbs.Cargo> findByFlightId (Integer flightId);
+    List<CargoDto> findByFlightId (Integer flightId);
 }

@@ -15,49 +15,50 @@ import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/api")
-public class FlightController {
-
-    private final FlightService flightService;
+class FlightController {
+    private final FlightService service;
     private final CargoRepository cargoRepository;
-    private final BaggageRepostitory baggageRepostitory;
     private final FlightRepository flightRepository;
+    private final BaggageRepostitory baggageRepository;
 
-    public FlightController(FlightService flightService, CargoRepository cargoRepository, BaggageRepostitory baggageRepostitory, FlightRepository flightRepository) {
-        this.flightService = flightService;
-        this.cargoRepository = cargoRepository;
-        this.baggageRepostitory = baggageRepostitory;
+    FlightController(FlightService service, FlightRepository flightRepository, CargoRepository cargoRepository, BaggageRepostitory baggageRepository) {
+        this.service = service;
         this.flightRepository = flightRepository;
+        this.cargoRepository = cargoRepository;
+        this.baggageRepository = baggageRepository;
     }
 
     @RequestMapping(value = "/task1")
     @ResponseBody
-    public String task1(@RequestParam(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date, @RequestParam(value = "flight-number") Short flightNumber) {
+    public String task1(@RequestParam(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date, @RequestParam(value = "flight-number") Short flightNumber) {
         int flightId = flightRepository.findByDepartureDateAndFlightNumber(date, flightNumber).getId();
 
-        int cargoW= (int) flightService.cargoWeight(flightId);
-        int baggageW = (int) flightService.baggageWeight(flightId);
+        int cargoW = (int) service.cargoWeight(flightId);
+        int baggageW = (int) service.baggageWeight(flightId);
 
-        return "For flight "+flightNumber+" and date "+date +
-                " total weight of cargo "+ cargoW+ " kg., "+
-                "total weight of baggage "+ baggageW + " kg., "+
-                "and total weight" + (cargoW + baggageW) +" kg.";
+        return "For flight " + flightNumber + " and date " + date +
+                " total weight of cargo " + cargoW + " kg., " +
+                "total weight of baggage " + baggageW + " kg., " +
+                "and total weight" + (cargoW + baggageW) + " kg.";
     }
-    @RequestMapping(value="/task2")
+
+    @RequestMapping(value = "/task2")
     @ResponseBody
-    public String task2(@RequestParam(value="date") @DateTimeFormat(pattern="yyyy-MM-dd")LocalDate date, @RequestParam(value="airport-code")String airportCode)
-    {
-        return "For airport "+ airportCode +" on "+date+ " there are" +
-                flightService.numberOfFlightsDepartingFromAirport (date, airportCode) +
-                " flights departing with "+
-                flightService.totalNumberOfBaggageDepartingFromTheAirport(date,airportCode)
-                +" pieces of baggage" +
+    public String task2(@RequestParam(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date, @RequestParam(value = "airport-code") String airportCode) {
+        return "For airport " + airportCode + " on " + date + " there are" +
+                service.numberOfFlightsDepartingFromAirport(date, airportCode) +
+                " flights departing with " +
+                service.totalNumberOfBaggageDepartingFromTheAirport(date, airportCode)
+                + " pieces of baggage" +
                 " and "
-                + flightService.numberOfFlightsArrivingToTheAirport (date, airportCode) +
+                + service.numberOfFlightsArrivingToTheAirport(date, airportCode) +
                 " flights arriving with "
-                + flightService.totalNumberOfBaggageArrivingToTheAirport(date,airportCode)
+                + service.totalNumberOfBaggageArrivingToTheAirport(date, airportCode)
                 + " pieces of baggage.";
 
     }
 
-
 }
+
+
+
