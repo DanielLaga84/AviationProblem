@@ -33,6 +33,34 @@ public class Flight {
     @JoinColumn(name = "flight_id")
     Set<CargoAbs.Cargo> cargo = new HashSet<>();
 
+    public int getId() {
+        return id;
+    }
+
+    public short getFlightNumber() {
+        return flightNumber;
+    }
+
+    public String getAirportCodeDeparture() {
+        return airportCodeDeparture;
+    }
+
+    public String getAirportCodeArrival() {
+        return airportCodeArrival;
+    }
+
+    public LocalDateTime getDepartureDate() {
+        return departureDate;
+    }
+
+    public Set<CargoAbs.Baggage> getBaggage() {
+        return baggage;
+    }
+
+    public Set<CargoAbs.Cargo> getCargo() {
+        return cargo;
+    }
+
     public Flight() {
     }
 
@@ -60,10 +88,33 @@ public class Flight {
         @Column(name = "weight_unit")
         WeightUnit weightUnit;
 
-        @JoinColumn(name = "fligt_id")
+        @JoinColumn(name = "flight_id")
         private int flightId;
 
         enum WeightUnit {kg, lb}
+
+        public int getId() {
+            return id;
+        }
+
+        public short getPiecesOfCargo() {
+            return piecesOfCargo;
+        }
+
+
+        public short getWeight() {
+            return weight;
+        }
+
+        public WeightUnit getWeightUnit() {
+            return weightUnit;
+        }
+
+
+        public int getFlightId() {
+            return flightId;
+        }
+
 
         @Entity
         @Table(name = "cargo")
@@ -78,6 +129,24 @@ public class Flight {
                 this.weight = weight;
                 this.weightUnit = weightUnit;
             }
+            public int getId() {
+                return id;
+            }
+
+            public short getPiecesOfCargo() {
+                return piecesOfCargo;
+            }
+
+
+            public short getWeight() {
+                return weight;
+            }
+
+            public WeightUnit getWeightUnit() {
+                return weightUnit;
+            }
+
+
         }
 
         @Entity
@@ -92,6 +161,23 @@ public class Flight {
                 this.weight = weight;
                 this.weightUnit = weightUnit;
             }
+            public int getId() {
+                return id;
+            }
+
+            public short getPiecesOfCargo() {
+                return piecesOfCargo;
+            }
+
+
+            public short getWeight() {
+                return weight;
+            }
+
+            public WeightUnit getWeightUnit() {
+                return weightUnit;
+            }
+
         }
     }
 }

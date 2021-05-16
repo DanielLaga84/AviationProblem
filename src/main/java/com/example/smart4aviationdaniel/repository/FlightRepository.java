@@ -28,6 +28,6 @@ public interface FlightRepository extends JpaRepository<Flight,Integer> {
                     "and (airport_code_departure = :airportCode or airport_code_arrival= :airportCode)",
             nativeQuery=true
     )
-    Set<Flight> findByDepartureDateAndAirportCodeArrival(@Param("date")LocalDate date, @Param("airportCode")String airportCode);
+    Set<Flight> findByDepartureDateAndAirportCode(@Param("date")LocalDate date, @Param("airportCode")String airportCode);
 
 }
